@@ -2,13 +2,14 @@ FROM node:18-bullseye-slim AS base
 
 # openssl will be a required package if base is updated to 18.16+ due to node:*-slim base distro change
 # https://github.com/prisma/prisma/issues/19729#issuecomment-1591270599
-# Install ffmpeg
+# Install ffmpeg + git
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
     ffmpeg \
     tini \
     openssl \
     ca-certificates \
+    git \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
